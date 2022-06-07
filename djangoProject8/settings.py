@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6d$%lhckl4ul%yvnjl$i^l296%@yesqhv_bd(w%#$cglb(zcj9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -37,15 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',         #--------------------------------------- 15. user app 만들었으니 추가해주고
-    'postbox',          #----------------------------------- 16. postbox app 만들었으니 추가해주기
-                        # ---------------------------------- 17. 다음으로 app을 데이터 베이스에 넣을 것임.
-    #------------------------------------------------------- 18. 왼쪽 파일리스트에 db.sqlite3 있는지 확인하고 우측 [ 데이터베이스 ] 클릭
-    #------------------------------------------------------- 19. 데이터베이스 창 왼쪽 상단에 [ + ] 버튼을 눌러서 Data Source from Path '경로데이터소스'클릭해서 db.sqlite3 파일이 있는 곳을 찾아가서 선택.
-    #------------------------------------------------------- 20. 다음으로 Driver '드라이버'는 SQLite를 선택하고 OK
-    #------------------------------------------------------- 21. Test Connectio '연결테스트'를 클릭해서 Succeeded '성공'이 뜨는지 확인하고 Apply '적용'을 먼저 누르고 OK '확인'을 눌러야함.
-    #------------------------------------------------------- 22. 앱을 만들어주고 데이터베이스를 연결을 했으니 이제 모델을 구성하러 가볼 차례임. user app의 models.py로 이동
-
+    'user',
+    'postbox',
+    'comment',
 
 ]
 
@@ -95,6 +90,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
+# 패스워드 보안 수준 검증
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -116,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+# 시간 설정
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -128,7 +127,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = (
+    os.path.join('static'),
+)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'user.UserModel'
+# 장고의 기본 모델  + 우리가 만든 유저 모델을 사용할 것임. bio를 추가하니까 user(앱 안에 있는).UserModel을 사용하겠다.
+
+
