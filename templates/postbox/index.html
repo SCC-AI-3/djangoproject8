@@ -33,6 +33,7 @@
 
 {% block content %}
 
+
 <!-- Wrapper -->
 <div id="wrapper">
 
@@ -44,7 +45,7 @@
 
             <div class="item intro span-2">
                 <h1>추천영화</h1>
-                <p>'5aim'님 추천영화</p>
+                <p>{{ user.username }}님을 위한 </br> 추천영화</p>
             </div>
 
             <article class="item thumb span-1">
@@ -102,7 +103,7 @@
 
             <div class="item intro span-2">
                 <h1>내가 찜한 영화</h1>
-                <p>'5aim'님 PICK</p>
+                <p>{{ user.username }}님 PICK</p>
             </div>
 
             <article class="item thumb span-1">
@@ -217,24 +218,25 @@
     <!-- Footer -->
     <section id="footer">
         <section>
-            <p>This is <strong>Parallelism</strong>, a responsive portfolio site template by <a href="">HTML5 UP</a>.
-                Free for personal
-                and commercial use under the <a href="">Creative Commons Attribution</a> license.</p>
-        </section>
-        <section>
-            <ul class="icons">
-                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-            </ul>
             <ul class="copyright">
                 <li>&copy; Untitled</li>
-                <li>Design: <a href="">HTML5 UP</a></li>
+                <li>Design: HTML5 UP</li>
             </ul>
         </section>
     </section>
+
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item disabled">
+                        <span class="nav-link">
+                            {{ user.username }} 님 반갑습니다!
+                        </span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout"> 로그아웃 </a>
+        </li>
+    </ul>
+    {% endif %}
 
 </div>
 
@@ -247,8 +249,6 @@
 <script src="{% static 'postbox_assets/js/breakpoints.min.js' %}"></script>
 <script src="{% static 'postbox_assets/js/util.js' %}"></script>
 <script src="{% static 'postbox_assets/js/main.js' %}"></script>
-
-
 
 
 </body>

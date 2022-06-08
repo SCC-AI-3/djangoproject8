@@ -6,44 +6,176 @@
 {% block content %}
     <div class="container">
         <div class="wrap">
-            <h2 class="title-center"> 회원가입 </h2>
+
 
             {#     HTML <form>태그 속성에 method와 action 추가       #}
             {#    method="post" 보내는 url : action="/sign-up/"   #}
             <form class="form-area" method="post" action="/sign-up/">
                 {% csrf_token %} {# Cross Site Request Forgery #}
 
+                {#        Id        #}
                 <div class="form-group mt-2 mb-2">
-                    <label for="username">이름</label>
-                    <input type="text" class="form-control" id="username" name="username">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Id">
                 </div>
 
+                {#        Pw        #}
                 <div class="form-group mt-2 mb-2">
-                    <label for="password">비밀번호</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
 
+                {#        Pw2       #}
                 <div class="form-group mt-2 mb-2">
-                    <label for="password2">비밀번호 확인</label>
-                    <input type="password" class="form-control" id="password2" name="password2">
+                    <input type="password" class="form-control" id="password2" name="password2"
+                           placeholder="Password check">
                 </div>
 
+                {#     Introduce     #}
                 <div class="form-group mt-2 mb-2">
-                    <label for="bio">나를 한마디로</label>
-                    <input type="text" class="form-control" id="bio" name="bio">
+                    <input type="text" class="form-control" id="bio" name="bio" placeholder="Introduce">
                 </div>
+
+
 
                 {# render함수에서 html을 출력 할 때, 'error' 데이터를 같이 넘겨주면 alert로 그에 맞는 error를 띄워줌 #}
                 {% if error %}
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-light" role="alert">
                         {{ error }}
                     </div>
                 {% endif %}
 
+
+
+                {#      선호 영화 장르 고르기       #}
+
+                <div>
+                    <blockquote class="blockquote">
+                        <p>선호하는 영화를 고르세요. (복수선택가능)</p>
+                    </blockquote>
+
+
+                    <!-- Button trigger modal -->
+
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        내가 좋아하는 영화 장르
+                    </button>
+
+                    <!-- 선호 영화 고르기 Modal -->
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">내가 좋아하는 영화 장르</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="" value="option1">
+                                        <label class="form-check-label" for="">드라마 (Drama)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">다큐멘터리 (Documentary)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option1">
+                                        <label class="form-check-label" for="">로멘스 (Romance)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">범죄 (Crime)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">스릴러 (Thriller)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">코미디 (Comedy)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">액션 (Action)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">공포 (Horror)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">SF (Science Fiction)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">전쟁 (War)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">스포츠 (Sports)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">판타지 (Fantasy)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">독립영화 (Independent Film)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">단편영화 (Short Film)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">장편영화 (A Feature-Length Film)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">뮤지컬 (Musical)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">교육 (Educational)</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="" value="option2">
+                                        <label class="form-check-label" for="">애니매이션 (Animation)</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기
+                                    </button>
+                                    <button type="button" class="btn btn-primary">저장</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <hr>
                 <div style="float: right">
-                    <button type="submit" class="btn btn-primary">회원가입</button>
-                    <a href="/sign-in" class="btn btn-secondary">로그인 페이지로</a>
+                    <a href="/sign-in" class="btn btn-outline-dark">로그인</a>
+                    <button type="submit" class="btn btn-outline-dark">회원가입</button>
                 </div>
             </form>
             {#      회원가입 버튼을 누르면 form 태그 안에 method post로 action sign-up에 데이터를 보내줌.      #}
