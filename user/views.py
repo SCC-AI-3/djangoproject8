@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect  # redirect 임포트함. 회원가입 후 로그인페이지로 이동시키려고
-from django.http import HttpResponse
 from .models import UserModel  # 유저모델 임포트해서 끌어와서 씀
 from django.contrib.auth import get_user_model  # 사용자가 있는지 검사하기 위한 임포트
 from django.contrib import auth  # 로그인 중복확인
-from django.contrib.auth.decorators import login_required # 로그아웃하기 위해 임포트
+from django.contrib.auth.decorators import login_required  # 로그아웃하기 위해 임포트
 
 # Create your views here.
 
@@ -12,18 +11,18 @@ from django.contrib.auth.decorators import login_required # 로그아웃하기 �
 
 def sign_in_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
 
         me = auth.authenticate(request, username=username, password=password)  # 사용자 불러오기
         # 사용자 비밀번호와 유저네임이 맞는지 한번에 확인해주는 auth.authenticate
 
         if me is not None:  # 저장된 사용자의 패스워드와 입력받은 패스워드 비교 / 사용자가 있는지 없는지만 구분해주면 됨.
-            auth.login(request, me) # 만약에 사용자가 비어있지 않으면 me 정보를 넣고서 로그인 시켜줌.
-            return redirect('/') # [ postbox앱 ] - urls에 기본 path('', 기본 Home 함수로 넘어감 !!!!!
+            auth.login(request, me)  # 만약에 사용자가 비어있지 않으면 me 정보를 넣고서 로그인 시켜줌.
+            return redirect('/')  # [ postbox앱 ] - urls에 기본 path('', 기본 Home 함수로 넘어감
 
         else: # 로그인이 실패하면 다시 로그인 페이지를 보여주고 error 띄우기
-            return render(request,'user/signin.html',{'error':'유저이름 혹은 패스워드를 확인 해 주세요'})
+            return render(request, 'user/signin.html', {'error':'유저이름 혹은 패스워드를 확인 해 주세요'})
 
 
     elif request.method == 'GET':
@@ -50,14 +49,14 @@ def sign_up_view(request):
             return render(request, 'user/signup.html')
 
     elif request.method == 'POST':
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-        password2 = request.POST.get('password2', '')
-        bio = request.POST.get('bio', '')
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
+        password2 = request.POST.get('password2', None)
+        bio = request.POST.get('bio', None)
 
         # 패스워드가 패스워드2와 같지 않다면
         if password != password2:
-            return render(request, 'user/signup.html'), {'error': '비밀번호가 다릅니다'}
+            return render(request, 'user/signup.html', {'error': '비밀번호가 다릅니다'})
 
         # 패스워드와 패스워드2가 같다면
         else:

@@ -1,4 +1,5 @@
 <!-- templates/postbox/index.html -->
+
 {% load static %}
 <!DOCTYPE HTML>
 <!--
@@ -7,7 +8,6 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-
 
 <head>
     <title>postbox</title>
@@ -30,25 +30,8 @@
 
 <body class="is-preload">
 
-<div class="wrap">
-    <ul class="nav justify-content-end">
-        {% if not user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/sign-in">login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/sign-up">join us</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/logout">logout</a>
-            </li>
-        {% endif %}
-    </ul>
-</div>
+
+{% block content %}
 
 <!-- Wrapper -->
 <div id="wrapper">
@@ -255,6 +238,8 @@
 
 </div>
 
+{% endblock %}
+
 <!-- Scripts -->
 <script src="{% static 'postbox_assets/js/jquery.min.js' %}"></script>
 <script src="{% static 'postbox_assets/js/jquery.poptrox.min.js' %}"></script>
@@ -262,5 +247,9 @@
 <script src="{% static 'postbox_assets/js/breakpoints.min.js' %}"></script>
 <script src="{% static 'postbox_assets/js/util.js' %}"></script>
 <script src="{% static 'postbox_assets/js/main.js' %}"></script>
+
+
+
+
 </body>
 </html>

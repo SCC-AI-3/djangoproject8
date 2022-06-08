@@ -27,6 +27,6 @@ urlpatterns = [
 
     path('', include('user.urls')),
 
-    path('postbox/', include('postbox.urls')),
+    path('', include('postbox.urls')),
 
 ]

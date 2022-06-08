@@ -21,8 +21,7 @@ def home(request):
 # ============================================================================= postbox
 
 
-@login_required
-def PostBox(request):
+def postbox(request):
     if request.method == 'GET':
         user = request.user.is_authenticated  # 사용자가 로그인이 되어 있는지 확인하기
 
@@ -32,6 +31,8 @@ def PostBox(request):
         else:  # 로그인이 되어 있지 않다면
             return redirect('/sign-in')
 
+
+# ============================================================================= mypage
 
 
 

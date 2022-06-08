@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6d$%lhckl4ul%yvnjl$i^l296%@yesqhv_bd(w%#$cglb(zcj9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'postbox',
-    'comment',
 
 ]
 
