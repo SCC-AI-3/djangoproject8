@@ -19,17 +19,19 @@
 
 <style>
     body {
-        background-color: black;
+        background-color: white;
     }
 
     .logo-link {
         position: fixed;
-        left: 65px;
-        top: 65px;
+        left: 35px;
+        top: 35px;
     }
 
     .login-txt {
-        color: white;
+        color: black;
+        padding-left: 145px;
+        font-size: 40px;
     }
 
     .title-center {
@@ -46,7 +48,7 @@
     .wrap {
         width: 400px;
         margin: 0 auto;
-        margin-top: 30%;
+        margin-top: 20%;
     }
 
     .title-link {
@@ -64,38 +66,38 @@
 
     .form-control {
         width: 300px;
-        background-color: black;
-        color: white;
-        border-color: white;
+        background-color: white;
+        color: black;
+        border-color: black;
     }
 
     .form-control:focus {
-        background-color: black;
-        border-color: white;
+        background-color: white;
+        border-color: black;
         width: 300px;
-        color: white;
+        color: black;
     }
 
 
     .btn {
         background-color: grey;
-        color: white;
+        color: black;
         width: 300px;
     }
 
     .btn:hover {
-        background-color: aqua;
+        background-color: black;
         color: white;
         transition: none;
     }
 
     .btnn {
         text-decoration: none;
-        color: white;
+        color: grey;
     }
 
     .btnn:hover {
-        color: aqua;
+        color: black;
         transition: none;
     }
 
@@ -105,7 +107,7 @@
 
     .alert {
         color: red;
-        background-color: black;
+        background-color: white;
         border: none;
         margin-bottom: 0px;
         height: 27px;
@@ -115,13 +117,13 @@
 <body>
     <div class="logo-link">
         <a href="/">
-            <img src="{% static 'log_images/a.png' %}" />
+            <img src="{% static 'log_images/b.png' %}" />
         </a>
     </div>
     <div class="container">
         <div class="wrap">
 
-            <div class="login-txt" style="padding-left:145px; font-size: 40px;">
+            <div class="login-txt">
                 <div><b>로그인</b></div>
             </div>
 
