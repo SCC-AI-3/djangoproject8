@@ -74,6 +74,10 @@ input, select, textarea {
 
 /* Basic */
 
+	@-ms-viewport {
+		width: device-width;
+	}
+
 	body {
 		-ms-overflow-style: scrollbar;
 	}
@@ -2701,9 +2705,6 @@ input, select, textarea {
 						margin-bottom: 0;
 					}
 
-			.tiles article.style1 > .image:before {
-				background-color: #f2849e;
-			}
 
 			.tiles article.style2 > .image:before {
 				background-color: #7ecaf6;

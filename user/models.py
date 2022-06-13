@@ -1,20 +1,21 @@
-from django.db import models # 얘는 앱을 생성하면 저절로 임포트 되어있음.
-from django.contrib.auth.models import AbstractUser # 장고에서 기본 모델에서 모델을 추가할 때 AbstractUser를 씀.
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from taggit.managers import TaggableManager
 
-# Create your models here.
-
-
-# ==================================================================  user model
-
-
-class UserModel(AbstractUser): # class이름 : UserModel. 모델의 정보를 담고 있는 곳. AbstractUser을 상속해서 쓰는데 bio를 추가해서 쓰겠음
+class UserModel(AbstractUser):
     class Meta:
-        db_table = "sns_user"
+        db_table = 'users'
 
-    bio = models.TextField(max_length=1000, blank=True)
-    # 유저의 소개글 object - dafault, null, blank 설명은 https://daeguowl.tistory.com/64
-
-
+    introduce = models.TextField(max_length=500, null=True)
+    genre = models.TextField(max_length=1000, blank=True)
 
 
+# class User(models.Model):
+#     name = models.CharField(max_length=100)
+#
+#     class Meta:
+#         db_table = 'ReviewUser'
+#
+#     def __str__(self):
+#         return self.name
 

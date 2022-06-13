@@ -1,33 +1,85 @@
-from django.db import models # 이거는 앱을 만들면 저절로 임포트되어있음.
-from user.models import UserModel # user앱에 있는 models를 임포트 해줘야함. 유저와 글이 연결되어야 하니까
+from django.db import models
+from user.models import UserModel
+from django.conf import settings
 
+# =================================================================================================== #
 
-# Create your models here.
-
-#======================================================================== postbox model
-
-
-class PostBox(models.Model):
+# 영화모델추가
+class movieModel(models.Model):
     class Meta:
-        db_table = "user_postbox"
+        db_table = 'movies'
 
-        # =============================================================== postbox model의 object들 만들기
-        # =============================================================== 장고에서 제공하는 모델을 사용해서 각 요소에 어떤 데이터의 형식이 들어갈지 정해주는 것임.
+    title = models.CharField(max_length=100)
+    genre = models.CharField(max_length=100, default='')
+    Poster = models.CharField(max_length=1000)
 
-    author = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    # ====== author : postbox를 작성하는 작성자
-    # ====== ForeignKey : models에 있는 UserModel을 가져와서 구분해서 사용하겠다. 각 사용자를 구분해야 하므로
-    # ====== UserModel : UserMedel의 사용자가 작성 한 글임. ForeignKey의 영향을 받음.
-    # ====== on_delete=models.CASCADE : 사용자를 삭제하면 해당 object를 참고하는 object도 삭제해라. 계정을 삭제 했을 때 postbox도 같이 삭제되는 것을 생각하면 됨.
-
-    content = models.CharField(max_length=5000, null=False)  # ==========  content object - 문자열 모델 - 최대 문자 길이 5000. 빈 문자열 저장하지 않음 (False)
-    creat_at = models.DateTimeField(auto_now_add=True)  # ===============  생성일 object - 해당 레코드 생성시 (auto) 자동으로 (now) 지금 시간을 (add) 저장.
-    update_at = models.DateTimeField(auto_now=True)  # ==================  수정일 object - 해당 레코드 갱신시 (auto) 자동으로 (now) 현재 시간 저장
-
-    # ====== CharField, TextField, SlugField, EmailField, CommaSeparatedIntegerField, UUIDField: 문자열
-    # ====== DateTimeField, DateField, TimeField : 날짜 / 시간
-    # ====== ForeignKey : 다른 테이블과 연관을 지어 줄 때
+# =================================================================================================== #
 
 
 
+# =================================================================================================== #
 
+# 유저의 포스트한 리뷰 모델
+class Review(models.Model):
+    class Meta:
+        db_table = 'reviews'
+
+    author = models.ForeignKey(UserModel, on_delete=models.CASCADE)  # 리뷰작성자
+
+    title = models.CharField(max_length=100)  # 영화 이름
+    review = models.CharField(max_length=1000)  # 리뷰내용
+    score = models.IntegerField()  # 평점
+
+    genre = models.ForeignKey('movieModel', on_delete=models.SET_NULL, null=True, related_name='review_genre')
+    Poster = models.CharField(max_length=200, default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+# =================================================================================================== #
+
+#크롤링 db 저장
+class MovieData(models.Model):
+    class Meta:
+        db_table = 'recentMovies'
+    title = models.CharField(max_length=200)
+    link = models.URLField()
+    image = models.URLField()
+
+    def __str__(self):
+        return self.title
+
+
+# 찜 영화
+class favorite(models.Model):
+    class Meta:
+        db_table = 'favorite'
+
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    movie = models.ForeignKey(movieModel, on_delete=models.CASCADE, null=True)
+    boxoffice = models.ForeignKey(MovieData, on_delete=models.CASCADE, null=True)
+
+
+
+
+# =================================================================================================== #
+
+
+
+#크롤링 리스트 db 저장
+
+class crawlReview(models.Model):
+    class Meta:
+        db_table = 'crawl_reviews'
+
+    author = models.ForeignKey(UserModel, on_delete=models.CASCADE)  # 리뷰작성자
+
+    title = models.CharField(max_length=100, null = True, default='')  # 영화 이름
+    review = models.CharField(max_length=500, null = True)  # 리뷰내용
+    score = models.IntegerField()  # 평점
+
+    created_at = models.DateTimeField(auto_now_add=True)  # 리뷰작성 시간
+    updated_at = models.DateTimeField(auto_now=True)  # 리뷰 업데이트
+
+    def __str__(self):
+        return self.title
