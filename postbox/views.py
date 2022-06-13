@@ -85,16 +85,16 @@ def delete_review(request, id):
 def MovieReview(request, id):
     if request.method == 'GET':
         user = request.user.is_authenticated
-        movie = movieModel.objects.get(id=id)
+        movie = movieModel.objects.get(movieId = id)
 
         if user:
             return render(request, 'review.html', {'user':user, 'movie':movie})
 
 # =================================================================================================== #
 @login_required
-def movie_favorite(request, post_id):
+def movie_favorite(request, id):
     user = request.user
-    movie = movieModel.objects.get(id=id)
+    movie = movieModel.objects.get(movieId = id)
     is_favorite = favorite.objects.filter(author=user, movie=movie)
 
     if is_favorite:

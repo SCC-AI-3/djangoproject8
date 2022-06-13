@@ -87,13 +87,17 @@
             <div class="item intro span-2">
                 <p><a style="text-decoration:none" href="/MyReview">{{ user.username }}</a>님을 위한 <br></p>
                 <h1>추천영화</h1>
+                <ul class="actions">
+                    <li><a href="/recommend" class="button large">추천리스트 받기</a></li>
+                </ul>
             </div>
 
             {% for class in class_object %}
             {% csrf_token %}
                 <article class="item thumb span-1">
+                    <a href="/recommed/{{class.movieId}}">
                     <h2>{{ forloop.counter }}. {{ class.title }}</h2>
-                    <a href="/MovieReview/{{ class.id }}">
+                    <a href="/MovieReview/{{ class.movieId }}">
                         <img src="{{ class.Poster }}" alt=""></a>
                 </article>
             {% endfor %}

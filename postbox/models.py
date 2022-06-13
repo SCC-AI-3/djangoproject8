@@ -9,10 +9,10 @@ class movieModel(models.Model):
     class Meta:
         db_table = 'movies'
 
+    movieId = models.IntegerField(primary_key = True)
     title = models.CharField(max_length=100)
-    genre = models.CharField(max_length=100, default='')
-    Poster = models.CharField(max_length=1000)
-
+    genre = models.CharField(max_length=100)
+    Poster = models.CharField(max_length=200)
 # =================================================================================================== #
 
 
@@ -56,7 +56,7 @@ class favorite(models.Model):
         db_table = 'favorite'
 
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    movie = models.ForeignKey(movieModel, on_delete=models.CASCADE, null=True)
+    movie = models.ForeignKey(movieModel, on_delete=models.CASCADE, db_column='movieId')
     boxoffice = models.ForeignKey(MovieData, on_delete=models.CASCADE, null=True)
 
 

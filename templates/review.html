@@ -52,6 +52,7 @@
     <!-- Main -->
     <div id="main">
         <div class="inner">
+
             <a href="{{ movie_list.link }}">
                 <h1>{{ movie_list.title }}</h1>
             </a>
@@ -68,16 +69,26 @@
 
 
 
+            <!--추천영화 리뷰페이지 -->
+            {% for class in class_object %}
+            <a href="{{ class.link }}">
+                <h1>{{ class.title }}</h1>
+            </a>
 
+
+            <section>
+                <img src="{{ class.Poster }}" alt="">
+                <img src="{{ class.link }}" alt="">
+            </section>
             <br>
-
+            {% endfor %}
 
             {% if not is_favorite %}
-                <a href="/MovieReview/steam/{{ movie.id }}">
+                <a href="/MovieReview/steam/{{ movie.movieId }}">
                     <button class="primary"><span style="color:red;"></span> 찜하기</button>
                 </a>
             {% else %}
-                <a href="/MovieReview/steam/{{ movie.id }}">
+                <a href="/MovieReview/steam/{{ movie.movieId }}">
                     <button class="primary"><span style="color:red;"></span> 찜하기</button>
                 </a>
             {% endif %}

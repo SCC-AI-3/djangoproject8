@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('user.urls')),
     path('', include('postbox.urls')),
+    path('', include('recommend.urls')),
 ]

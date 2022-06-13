@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k6&pyn5!0%mx5cdtdq6nt%@+^)vx(m_hs#3$miyf@lgh2i94ak'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'postbox',
+    'recommend',
     'taggit.apps.TaggitAppConfig',
     'taggit_templatetags2',
 ]
