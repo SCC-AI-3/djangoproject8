@@ -21,8 +21,6 @@ urlpatterns = [
 
     path('MovieReview/steam/<int:id>', views.movie_favorite, name='picklist'),
 
-    # path('boxoffice/steam/<int:id>', views.movie_pick, name='boxoffice_pick'),
-
 # =================================================================================================== #
 
     path('postbox/<int:preview_id>/', views.detail),
